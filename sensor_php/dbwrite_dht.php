@@ -22,8 +22,7 @@ if ($conn->connect_error) {
     $result = $conn->query($get_sql);
     $row = $result->fetch_assoc();
 	//回伝:temp,default_temp,hum,default_hum,fan_switch,time
-    echo "New Data :"; 
-    echo ",temp= ".$row["temp"];
+    echo "temp= ".$row["temp"];
 	echo ",default_temp=".$row["default_temp"];
     echo ",hum= ".$row["hum"]; 
     echo ",default_hum= ".$row["default_hum"];	
@@ -34,7 +33,7 @@ if ($conn->connect_error) {
    
 /*時間設定*/
 date_default_timezone_set('Asia/Taipei');  //時區 
-//*timezone refer: https://www.php.net/manual/en/timezones.asia.php
+/*timezone refer: https://www.php.net/manual/en/timezones.asia.php*/
 $d = date("Y-m-d"); //日期(格式:年-月-日)
 $t = date("H:i:s"); //時間(格式:時-分-秒)
     
@@ -48,7 +47,7 @@ if(!empty($_POST['temp']) && !empty($_POST['hum']) ){
 	    $post_sql = "INSERT INTO sensor_dht (temp, hum, date, time) VALUES ('".$temp."','".$hum."', '".$d."', '".$t."')"; 
 		
 		/*檢查是否有成功上傳*/
-		if ($conn->query($sql) == TRUE) {
+		if ($conn->query($post_sql) == TRUE) {
 		    echo "Values inserted in MySQL database table.";
 		}else{
 		    echo "Error: " . $sql . "<br>" . $conn->error;

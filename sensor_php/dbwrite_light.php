@@ -23,7 +23,6 @@ if ($conn->connect_error) {
     $result = $conn->query($get_sql);
     $row = $result->fetch_assoc();
 	//回伝:light,default_light,time
-    echo "New Data :"; 
     echo "light=  ".$row["light"];
     echo ",default_light= ".$row["default_light"];	
     echo ",time= ".$row["time"];
@@ -32,7 +31,7 @@ if ($conn->connect_error) {
    
 /*時間設定*/
 date_default_timezone_set('Asia/Taipei');  //時區 
-//*timezone refer: https://www.php.net/manual/en/timezones.asia.php
+/*timezone refer: https://www.php.net/manual/en/timezones.asia.php*/
 $d = date("Y-m-d"); //日期(格式:年-月-日)
 $t = date("H:i:s"); //時間(格式:時-分-秒)
     
@@ -45,7 +44,7 @@ if(!empty($_POST['light'])){
 	    $post_sql = "INSERT INTO sensor_light (light, date, time) VALUES ('".$light."', '".$d."', '".$t."')"; 
 		
 		/*檢查是否有成功上傳*/
-		if ($conn->query($sql) == TRUE) {
+		if ($conn->query($post_sql) == TRUE) {
 		    echo "Values inserted in MySQL database table.";
 		}else{
 		    echo "Error: " . $sql . "<br>" . $conn->error;

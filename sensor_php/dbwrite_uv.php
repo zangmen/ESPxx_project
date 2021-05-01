@@ -23,15 +23,14 @@ if ($conn->connect_error) {
     $result = $conn->query($get_sql);
     $row = $result->fetch_assoc();
 	//回伝:uv,default_uv,time
-    echo "New Data :"; 
-    echo ",uv: ".$row["uv"];
+    echo "uv: ".$row["uv"];
     echo ",default_uv= ".$row["default_uv"]; 
     echo ",time= ".$row["time"];    
 }
    
 /*時間設定*/
 date_default_timezone_set('Asia/Taipei');  //時區 
-//*timezone refer: https://www.php.net/manual/en/timezones.asia.php
+/*timezone refer: https://www.php.net/manual/en/timezones.asia.php*/
 $d = date("Y-m-d"); //日期(格式:年-月-日)
 $t = date("H:i:s"); //時間(格式:時-分-秒)
     
@@ -44,7 +43,7 @@ if(!empty($_POST['uv'])){
 	    $post_sql = "INSERT INTO sensor_uv (uv, date, time) VALUES ('".$uv."', '".$d."', '".$t."')"; 
 		
 		/*檢查是否有成功上傳*/
-		if ($conn->query($sql) == TRUE) {
+		if ($conn->query($post_sql) == TRUE) {
 		    echo "Values inserted in MySQL database table.";
 		}else{
 		    echo "Error: " . $sql . "<br>" . $conn->error;
