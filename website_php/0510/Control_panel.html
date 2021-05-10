@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+<link href="button.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<table width="824" border="0" cellpadding="0">
+<tr>
+    <td width="166">風扇</td>
+    <td width="166">燈條</td>
+    <td width="166">馬達</td>
+  
+  </tr><tr>
+<form action="dbread.php"  method="post">
+	<td width="166"><input name="fan_switch" type="checkbox" value="1" /></td>
+    <td width="166"><input name="led_switch" type="checkbox" value="1" /></td>
+   <td width="166"><input name="motor_switch" type="checkbox" value="1" /></td>
+<input type="hidden" id="confirm" name="confirm" value="3" />
+    <tr>    <td colspan="5">
+
+    <input type="reset"value="重新設定" />
+  　<input type="submit" value="enter">
+</td>    </tr>
+   </form>
+ 
+</body>
+</html>

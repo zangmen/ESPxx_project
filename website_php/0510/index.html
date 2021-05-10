@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>監控溫室專案檔bata3.2</title>
+<style type="text/css">
+.main {
+	background-color: #3FF;
+}
+.maintext a {
+	color: #000;
+	text-decoration: none;
+	display: block;
+}
+.maintext a:hover {
+	color: #F00;
+	background-color: #FF0;
+	text-decoration: none;
+}
+.maintext {
+	background-color: #eee;
+	text-align: center;
+	text-decoration: none;
+	overflow: hidden;
+	font-size: 24px;
+	font-style: normal;
+	font-family: "標楷體";
+}
+.main td {
+	font-size: 72px;
+	font-family: "標楷體";
+	color: #000;
+	font-style: italic;
+	line-height: normal;
+}
+</style></head>
+
+<body>
+<table width="1024" border="1" align="center" cellpadding="0">
+  <tr align="center" valign="middle" class="main">
+    <td height="200" colspan="2">監視網頁</td>
+  </tr>
+  <tr>
+    <td width="200" height="683" align="center" valign="middle"><table width="200" border="0" align="center" cellpadding="0">
+      <tr>
+        <td height="200" align="center" valign="top"><table width="200" border="0" cellpadding="0">
+          <tr class="maintext">
+            <td height="45"><a href="dbread.php" target="main">全部的資料</a></td>
+          </tr>
+          <tr class="maintext">
+            <td height="45">最新資料</td>
+          </tr>
+          <tr class="maintext">
+            <td height="45"><a href="dbread.php" target="main">查詢資料</a></td>
+          </tr>
+          <tr class="maintext">
+            <td height="45"><a href="dbwrite.php" target="main">寫入測試</a></td>
+          </tr>
+          <tr class="maintext">
+            <td height="45"><a href="Control_panel.html" target="main">開關設備</a></td>
+          </tr>
+          <tr class="maintext">
+            <td height="45"><a href="Control_panel1.html" target="main">控制預設區</a></td>
+          </tr>
+          <tr>
+            <td height="45" class="maintext">待機中</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+       <td></td>
+      </tr>
+    </table></td>
+    <td width="824" height="683" align="center" valign="middle"><table width="824" border="0" cellpadding="0">
+      <tr>
+        <td width="824" height="654"><span class="maintext">
+          <iframe src="dbread.php" name="main" width="824" height="629" scrolling="auto"></iframe>
+        </span></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<?php
+include "dbread2.php";
+?>
+</body>
+</html>

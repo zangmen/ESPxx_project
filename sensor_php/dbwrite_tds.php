@@ -51,7 +51,8 @@ if ($conn->connect_error) {
 	$row1 = $result1->fetch_assoc();
 	$row2 = $result2->fetch_assoc();
 	//回伝:tds,default_tds,time
-    echo "tds= ".$row["tds"];
+	echo "motor_switch= ".$row3["motor_switch"];
+    echo ",tds= ".$row["tds"];
     echo ",default_tds".$row1["default_tds"];
     echo ",time= ".$row["time"]; 	
 }

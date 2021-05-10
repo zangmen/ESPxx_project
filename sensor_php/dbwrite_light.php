@@ -51,7 +51,7 @@ if ($conn->connect_error) {
 	$row1 = $result1->fetch_assoc();
 	$row2 = $result2->fetch_assoc();
 	//回伝:light,default_light,time
-    echo "New Data :"; 
+	echo "led_light= ".$row3["led_switch"];
     echo "light=  ".$row["light"];
     echo ",default_light= ".$row1["default_light"];	
     echo ",time= ".$row["time"];
