@@ -1,7 +1,7 @@
 <?php
 
 /*資料庫設定*/
-$host = "120.102.34.39";		 // 伺服器位置(default:localhost)
+$host = "localhost";		 // 伺服器位置(default:localhost)
 $dbname = "esp8266_data";        // 資料庫名稱               
 $username = "master";		     // 帳戶              
 $password = "AA10bb17";	         // 密碼             
