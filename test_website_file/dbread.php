@@ -1,45 +1,13 @@
+<?php session_start(); ?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
 
-/*資料庫設定*/
-$host = "localhost";		 // 伺服器位置(default:localhost)
-$dbname = "esp8266_data";        // 資料庫名稱               
-$username = "master";		     // 帳戶              
-$password = "AA10bb17";	         // 密碼             
-
-/*建立資料庫連結(MySQLi)*/
-$conn = new mysqli($host, $username, $password, $dbname);
-
-/*檢查是否有連線成功*/
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}else{
-	echo "Connected to mysql database. <br>"; 
-}
+include("mysql_connect.inc.php");
 
 /*時間設定*/
 date_default_timezone_set('Asia/Taipei');  //時區 
 $d = date("Y-m-d"); //日期(格式:年-月-日)
 $t = date("H:i:s"); //時間(格式:時-分-秒)
- 
-/*
- * 登入畫面 
-*/
-
-/*查詢資料庫資料*/
-$login_user = $_POST['login_user'];
-$login_password = $_POST['login_password'];
-$login_sql = "SELECT * FROM `login_table` WHERE `user` = '$login_user' AND `password` = '$login_password'";
-$login_result = mysqli_query($conn,$login_sql);
-$login_row = mysqli_fetch_assoc($login_result);
-
-/*判斷帳號與密碼是否為空白或存在資料庫*/
-if($login_user != NULL && $login_password != NULL && $login_row['user'] == $login_user && $login_row['password'] == $login_password ) {
-    //將帳號寫入session，方便驗證使用者身份
-    $_SESSION['username'] = $login_user;
-    echo '登入成功! ';
-}else{
-    echo '登入失敗! ';
-}
  
 /*
  * sensor控制
@@ -149,7 +117,6 @@ if($confirm==2){
 	$post_sql = "update `device_switch` set `fan_switch`=  ".$fan_switch.",`led_switch`=".$led_switch.",`motor_switch`=".$motor_switch."";
 	echo "<br>風扇:".$fan_switch."<br>燈條:".$led_switch."<br>馬達:".$motor_switch;
 	if ($conn->query($post_sql) == TRUE) {
-		    echo "Values inserted in MySQL database table.";
 	}else{
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 	}
