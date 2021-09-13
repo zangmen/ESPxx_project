@@ -12,8 +12,8 @@
 /*WiFi設定*/
 #define HOST "192.168.21.39"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
 #define WIFI_SSID "IOT-house"        // Wifi 名稱                                    
-#define WIFI_PASSWORD "AA10BB17"       // WIFI 密碼 
-#define URL "https://192.168.20.195/upload_data/dbwrite.php"
+#define WIFI_PASSWORD "AA10bb17"       // WIFI 密碼 
+#define URL "https://192.168.21.39/upload_data/dbread_uv.php"
 
 /*全局變數*/
 #define uvPIN A0     //腳位:A0
@@ -39,13 +39,14 @@ void loop() {
 HTTPClient http;    // http object of clas HTTPClient
 WiFiClient wificlient; //wifi object of WiFiClient
 
-int val = dht.readTemperature(); //溫度(Temperature)
+int sensorValue = analogRead(A0);
+int val = mv_to_uv(sensorValue); //溫度(Temperature)
 
 // Convert integer variables to string
 sendval = String(val);  
  
 /*使用POST來送出資料*/
-postData = "sendval=" + sendval ;
+postData = "uv=" + sendval ;
 
 // We can post values to PHP files as  example.com/dbwrite.php?name1=val1&name2=val2&name3=val3
 // Hence created variable postDAta and stored our variables in it in desired format
@@ -56,7 +57,7 @@ postData = "sendval=" + sendval ;
    http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
    int httpCode = http.POST(postData);   // Send POST request to php file and store server response code in variable named httpCode
-   Serial.println("Values are, temp = " + sendval + " and hum = "+ sendval2 );
+   Serial.println("Values are, UV = " + sendval  );
 
    Serial.print("Send GET request to URL: ");
    Serial.println(URL);
@@ -109,4 +110,26 @@ void led_now(){
   digitalWrite(LED_BUILTIN, LOW);
   delay(3000);
   digitalWrite(LED_BUILTIN, HIGH); 
+}
+
+
+/*sensor輸出值(mV)転UV值*/
+int mv_to_uv(int sensor_value){
+   int uv;
+
+   /*分類*/
+   if(sensor_value<=226) uv=0;
+   else if(sensor_value<=227&&sensor_value<=317) uv=1;
+   else if(sensor_value<=318&&sensor_value<=407) uv=2;
+   else if(sensor_value<=408&&sensor_value<=502) uv=3;
+   else if(sensor_value<=503&&sensor_value<=605) uv=4;
+   else if(sensor_value<=606&&sensor_value<=695) uv=5;
+   else if(sensor_value<=696&&sensor_value<=794) uv=6;
+   else if(sensor_value<=795&&sensor_value<=880) uv=7;
+   else if(sensor_value<=881&&sensor_value<=975) uv=8;
+   else if(sensor_value<=976&&sensor_value<=1078) uv=9;
+   else if(sensor_value<=1079&&sensor_value<=1169) uv=10;
+   else uv=11;
+   
+   return uv; //回伝uv值
 }
