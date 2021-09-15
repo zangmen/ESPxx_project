@@ -11,10 +11,10 @@
 #include <WiFiClientSecure.h>
 
 /*WiFi設定*/
-#define HOST "192.168.20.195"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
-#define WIFI_SSID "Hydroponics"        // Wifi 名稱                                    
-#define WIFI_PASSWORD "AA10BB17"       // WIFI 密碼 
-#define URL "http://192.168.20.195/dbwrite.php"
+#define HOST "192.168.21.39"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
+#define WIFI_SSID "IOT-house"        // Wifi 名稱                                    
+#define WIFI_PASSWORD "AA10bb17"       // WIFI 密碼 
+#define URL "http://192.168.21.39/upload_data/dbread_dht.php"
 
 /*全局變數*/
 #define DHTPIN D1       //腳位:D1

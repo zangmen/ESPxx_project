@@ -7,13 +7,13 @@
 /*函式庫*/
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <WiFiClientSecure.h>
+//#include <WiFiClientSecure.h>
 
 /*WiFi設定*/
 #define HOST "192.168.21.39"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
 #define WIFI_SSID "IOT-house"        // Wifi 名稱                                    
 #define WIFI_PASSWORD "AA10bb17"       // WIFI 密碼 
-#define URL "https://192.168.21.39/upload_data/dbread_uv.php"
+#define URL "http://192.168.21.39/upload_data/test.php"
 
 /*全局變數*/
 #define uvPIN A0     //腳位:A0
@@ -75,8 +75,9 @@ postData = "uv=" + sendval ;
      Serial.println(httpCode); 
      Serial.println("Failed to upload values. \n"); 
      http.end(); 
-     return;   }  
-   led_now();
+     return;
+   }  
+   //led_now();
 
 }
 
@@ -104,13 +105,14 @@ void get_wifi(){
 }
 
 
-void led_now(){
-  /*led指示燈(板子上的LED:LOW&HIGH)*/
+/*void led_now(){
+  //led指示燈(板子上的LED:LOW&HIGH)
   delay(3000); 
   digitalWrite(LED_BUILTIN, LOW);
   delay(3000);
   digitalWrite(LED_BUILTIN, HIGH); 
 }
+*/
 
 
 /*sensor輸出值(mV)転UV值*/
