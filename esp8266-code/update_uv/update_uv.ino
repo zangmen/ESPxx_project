@@ -13,7 +13,7 @@
 #define HOST "192.168.21.39"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
 #define WIFI_SSID "IOT-house"        // Wifi 名稱                                    
 #define WIFI_PASSWORD "AA10bb17"       // WIFI 密碼 
-#define URL "http://192.168.21.39/upload_data/test.php"
+#define URL "http://192.168.21.39/upload_data/dbread_uv.php"
 
 /*全局變數*/
 #define uvPIN A0     //腳位:A0
@@ -37,10 +37,10 @@ void setup() {
 void loop() { 
 
 HTTPClient http;    // http object of clas HTTPClient
-WiFiClient wificlient; //wifi object of WiFiClient
+//WiFiClient wificlient; //wifi object of WiFiClient
 
 int sensorValue = analogRead(A0);
-int val = mv_to_uv(sensorValue); //溫度(Temperature)
+int val = mv_to_uv(sensorValue); //uv
 
 // Convert integer variables to string
 sendval = String(val);  
@@ -53,7 +53,7 @@ postData = "uv=" + sendval ;
 // For more detials, refer:- https://www.tutorialspoint.com/php/php_get_post.htm
 
   // Update Host URL here:-  
-   http.begin(wificlient,URL);   //要連線的位置
+   http.begin(URL);   //要連線的位置
    http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
    int httpCode = http.POST(postData);   // Send POST request to php file and store server response code in variable named httpCode
@@ -77,7 +77,7 @@ postData = "uv=" + sendval ;
      http.end(); 
      return;
    }  
-   //led_now();
+   led_now();
 
 }
 
@@ -104,15 +104,14 @@ void get_wifi(){
 
 }
 
-
-/*void led_now(){
-  //led指示燈(板子上的LED:LOW&HIGH)
+/*led指示燈(板子上的LED:LOW&HIGH)*/
+void led_now(){
   delay(3000); 
   digitalWrite(LED_BUILTIN, LOW);
   delay(3000);
   digitalWrite(LED_BUILTIN, HIGH); 
 }
-*/
+
 
 
 /*sensor輸出值(mV)転UV值*/
