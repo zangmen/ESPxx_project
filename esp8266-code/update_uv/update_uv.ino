@@ -1,7 +1,7 @@
 /*
    Source  Code: https://www.instructables.com/How-to-Connect-NodeMCU-ESP8266-to-MySQL-Database-1/
    板子: WMOS D1 mini
-   update: 20210910
+   update: 20211006
 */
 
 /*函式庫*/
@@ -11,9 +11,9 @@
 
 /*WiFi設定*/
 #define HOST "192.168.21.39"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
-#define WIFI_SSID "IOT-house"        // Wifi 名稱                                    
+#define WIFI_SSID "Hydroponics"        // Wifi 名稱                                    
 #define WIFI_PASSWORD "AA10bb17"       // WIFI 密碼 
-#define URL "http://192.168.21.39/upload_data/dbread_uv.php"
+#define URL "http://192.168.21.39/upload_data/dbwrite_uv_1.php"
 
 /*全局變數*/
 #define uvPIN A0     //腳位:A0
@@ -47,6 +47,7 @@ sendval = String(val);
  
 /*使用POST來送出資料*/
 postData = "uv=" + sendval ;
+Serial.println(postData);
 
 // We can post values to PHP files as  example.com/dbwrite.php?name1=val1&name2=val2&name3=val3
 // Hence created variable postDAta and stored our variables in it in desired format

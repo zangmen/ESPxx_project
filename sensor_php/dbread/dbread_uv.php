@@ -6,30 +6,31 @@ $dbname = "esp8266_data";       // 資料庫名稱
 $username = "master";		    // 帳戶              
 $password = "AA10bb17";	        // 密碼             
 
-if ($_SERVER["REQUE_METHOD"]== "POST"){
-    /*建立資料庫連結(MySQLi)*/
-    $conn = new mysqli($host, $username, $password, $dbname);
-    /*檢查是否有連線成功*/
-    if ($conn->connect_error) {
-       die("Connection failed: " . $conn->connect_error);
-    }else{
-	   echo "Connected to mysql database. <br>"; 
-    }
+/*建立資料庫連結(MySQLi)*/
+$conn = new mysqli($host, $username, $password, $dbname);
+/*檢查是否有連線成功*/
+if ($conn->connect_error) {
+   die("Connection failed: " . $conn->connect_error);
+}else{
+   echo "Connected to mysql database.";
+   echo "<br> ";   
+}
 
+/*時間設定*/
+date_default_timezone_set('Asia/Taipei');  //時區 
+//*timezone refer: https://www.php.net/manual/en/timezones.asia.php
+$d = date("Y-m-d"); //日期(格式:年-月-日)
+$t = date("H:i:s"); //時間(格式:時-分-秒)
 
-    /*時間設定*/
-    date_default_timezone_set('Asia/Taipei');  //時區 
-    //*timezone refer: https://www.php.net/manual/en/timezones.asia.php
-    $d = date("Y-m-d"); //日期(格式:年-月-日)
-    $t = date("H:i:s"); //時間(格式:時-分-秒)
-
-    // If values send by NodeMCU are not empty then insert into MySQL database table
-   /*使用POST來送出資料*/
+   /*
+      If values send by NodeMCU are not empty then insert into MySQL database table
+      (使用POST來送出資料)
+   */
    if(!empty($_POST["uv"])){
 	    $uv = $_POST["uv"];
 
         /*把資料上傳到資料庫的表格上*/
-	    $post_sql = "INSERT INTO sensor_uv (uv,date,time) VALUES ('".$uv."','".$d."','".$t."')"; 
+	    $post_sql = "INSERT INTO sensor_uv(uv,date,time)VALUES('".$uv."','".$d."','".$t."')"; 
 
 		/*檢查是否有成功上傳*/
 		if ($conn->query($post_sql) == true) {
@@ -38,7 +39,6 @@ if ($_SERVER["REQUE_METHOD"]== "POST"){
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 		}
     }
-
 
     /*把資料庫的表格叫出來*/
     $sql = "SELECT id, uv, date, time FROM sensor_uv";  // Update your tablename here
@@ -57,10 +57,6 @@ if ($_SERVER["REQUE_METHOD"]== "POST"){
 
     /*関閉資料庫連線(MySQLi)*/
     $conn->close();
-
-}else{
-	echo "No data in http post";
-}
 
 function test_input($data){
 	$data= trim($data);

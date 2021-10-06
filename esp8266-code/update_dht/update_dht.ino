@@ -12,9 +12,9 @@
 
 /*WiFi設定*/
 #define HOST "192.168.21.39"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
-#define WIFI_SSID "IOT-house"        // Wifi 名稱                                    
+#define WIFI_SSID "Hydroponics"        // Wifi 名稱                                    
 #define WIFI_PASSWORD "AA10bb17"       // WIFI 密碼 
-#define URL "http://192.168.21.39/upload_data/dbread_dht.php"
+#define URL "http://192.168.21.39/upload_data/dbwrite_dht_1.php"
 
 /*全局變數*/
 #define DHTPIN D1       //腳位:D1
@@ -42,7 +42,6 @@ void setup() {
 void loop() { 
 
 HTTPClient http;    // http object of clas HTTPClient
-WiFiClient wificlient; //wifi object of WiFiClient
 
 int val = dht.readTemperature(); //溫度(Temperature)
 int val2 = dht.readHumidity(); //溼度(Humidity)
@@ -51,14 +50,14 @@ int val2 = dht.readHumidity(); //溼度(Humidity)
 sendval = String(val);  
 sendval2 = String(val2);   
 /*使用POST來送出資料*/
-postData = "sendval=" + sendval  + "&sendval2=" + sendval2;
+postData = "temp=" + sendval  + "&hum=" + sendval2;
 
 // We can post values to PHP files as  example.com/dbwrite.php?name1=val1&name2=val2&name3=val3
 // Hence created variable postDAta and stored our variables in it in desired format
 // For more detials, refer:- https://www.tutorialspoint.com/php/php_get_post.htm
 
   // Update Host URL here:-  
-   http.begin(wificlient,URL);   //要連線的位置
+   http.begin(URL);   //要連線的位置
    http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
    int httpCode = http.POST(postData);   // Send POST request to php file and store server response code in variable named httpCode
