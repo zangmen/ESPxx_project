@@ -5,15 +5,21 @@
 <?php
 include("mysql_connect.inc.php");
 echo "目前使用者:".$_SESSION['username'];
-echo '<br><a href="logout.php">登出</a>  <br><br>';
+echo '<br><a href="logout.php">登出</a><br>';
 ?>
 
+<style type="text/css">
+.main_font {
+	font-family: "標楷體";
+}
+</style>
 <head>
 <meta charset="utf-8">
 <title>監控溫室專案檔bata3.2</title>
+<!--網頁佈置-->
 <style type="text/css">
-.main {
-	background-color: #FFF;
+body{
+	background-image: url(img/main.png);
 }
 .maintext a {
 	color: #000;
@@ -41,7 +47,8 @@ echo '<br><a href="logout.php">登出</a>  <br><br>';
 	font-style: italic;
 	line-height: normal;
 }
-.maintext1 {	background-color: #eee;
+.maintext1 {	
+    background-color: #eee;
 	text-align: center;
 	text-decoration: none;
 	overflow: hidden;
@@ -49,24 +56,22 @@ echo '<br><a href="logout.php">登出</a>  <br><br>';
 	font-style: normal;
 	font-family: "標楷體";
 }
-</style></head>
+.main_font strong {
+	font-size: 36px;
+	font-family: "標楷體";
+}
+</style>
+</head>
 
-<body bgcolor="#999999">
-<table width="1024" border="0" align="center" cellpadding="0">
-  <tr align="center" valign="middle" class="main">
-    <td height="200" colspan="2">監視網頁</td>
+<body bgcolor="#999999"><table width="1024" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr align="center" valign="middle">
+    <td height="100" colspan="2"><h1 class="main_font"><strong>監視網頁</strong></h1></td>
   </tr>
   <tr>
-    <td width="200" height="683" align="center" valign="middle"><iframe src="Menu.html" name="menu" width="200" height="663" scrolling="auto"></iframe>&nbsp;</td>
-    <td width="824" height="683" align="center" valign="middle"><table width="824" border="0" cellpadding="0">
+    <td width="200" height="660" align="center" valign="top"><iframe src="Menu.html" name="menu" width="200" height="663" scrolling="auto"></iframe></td>
+    <td width="824" height="683" align="center" valign="middle"><table width="825" border="0" cellpadding="0">
       <tr>
-        <td width="824" height="654"><table width="824" border="0" cellpadding="0">
-          <tr>
-            <td width="824" height="654"><span class="maintext1">
-              <iframe src="dbread.php" name="main" width="824" height="654" scrolling="auto"></iframe>
-            </span></td>
-          </tr>
-        </table>      </td>
+        <td width="820" height="663"><iframe src="dbread.php" name="main" width="824" height="654" scrolling="auto"></iframe></td>
       </tr>
     </table></td>
   </tr>

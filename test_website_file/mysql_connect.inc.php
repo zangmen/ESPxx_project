@@ -2,7 +2,7 @@
 <?php
 
 /*資料庫設定*/ 
-$host="localhost";
+$host="192.168.21.39";
 $dbname="esp8266_data";
 $username="master";
 $password="AA10bb17";

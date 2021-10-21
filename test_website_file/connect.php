@@ -17,10 +17,10 @@ $row = mysqli_fetch_assoc($result);
 if($user != null && $password != null && $row['user'] == $user && $row['password'] == $password ) {
         //將帳號寫入session，方便驗證使用者身份
         $_SESSION['username'] = $user;
-        echo '登入成功!';
+        echo '<h2> 狀態: 登入成功! </h2>';
         echo '<meta http-equiv=REFRESH CONTENT=1;url=main.php>';
 }else{
-        echo '登入失敗!';
+        echo '<h2> 狀態: 登入失敗! </h2>';
         echo '<meta http-equiv=REFRESH CONTENT=1;url=index.html>';
 }
 

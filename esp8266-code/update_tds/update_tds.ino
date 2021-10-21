@@ -84,7 +84,7 @@ void loop(){
    Serial.print("Send GET request to URL: ");
    Serial.println(URL);
 
-   if (httpCode == 200) { 
+   if (httpCode == 200){ 
       /*如果連線成功*/
       Serial.println("Values uploaded successfully."); 
       Serial.print("Http Code: ");
