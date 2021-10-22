@@ -65,13 +65,17 @@ body{
 
 <body bgcolor="#999999"><table width="1024" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr align="center" valign="middle">
-    <td height="100" colspan="2"><h1 class="main_font"><strong>監視網頁</strong></h1></td>
+    <td height="100" colspan="2" valign="middle"><h1 class="main_font"><strong>監視網頁</strong></h1></td>
   </tr>
   <tr>
-    <td width="200" height="660" align="center" valign="top"><iframe src="Menu.html" name="menu" width="200" height="663" scrolling="auto"></iframe></td>
-    <td width="824" height="683" align="center" valign="middle"><table width="825" border="0" cellpadding="0">
+    <td width="200" height="660" align="center" valign="middle"><iframe src="Menu.html" name="menu" width="200" height="663" scrolling="no"></iframe></td>
+    <td width="824" height="683" align="center" valign="top"><table width="825" border="0" cellpadding="0">
       <tr>
-        <td width="820" height="663"><iframe src="dbread.php" name="main" width="824" height="654" scrolling="auto"></iframe></td>
+        <td width="820" height="674"><table width="825" border="0" cellpadding="0">
+          <tr>
+            <td width="820" height="674"><iframe src="dbread.php" name="main" width="824" height="654" scrolling="auto"></iframe></td>
+          </tr>
+        </table></td>
       </tr>
     </table></td>
   </tr>
