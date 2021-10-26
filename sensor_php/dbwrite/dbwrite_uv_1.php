@@ -25,7 +25,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
 	  //回伝:uv,default_uv,time
       echo "uv: ".$row["uv"];
       echo ",default_uv= ".$row["default_uv"]; 
-      echo ",time= ".$row["time"];    
+      echo ",time= ".$row["time"];
+      echo ",date= ".$row["date"];	  
    }
 
    

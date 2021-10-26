@@ -24,17 +24,29 @@ if ($conn->connect_error) {
     $get_sql3 = "SELECT * FROM `device_switch`";
 	
     $result = $conn->query($get_sql);
-	  $result2 = $conn->query($get_sql2);
+	$result2 = $conn->query($get_sql2);
     $result3 = $conn->query($get_sql3);
 	
     $row = $result->fetch_assoc();
-	 $row2 = $result2->fetch_assoc();
+	$row2 = $result2->fetch_assoc();
     $row3 = $result3->fetch_assoc();
 	//回伝:light,default_light,time 
     echo "light=  ".$row["light"];
     echo ",default_light= ".$row2["default_light"];
-      echo ",led_switch=". $row3["led_switch"];
-	  echo ",time= ".$row["time"];
+    echo ",led_switch=". $row3["led_switch"];
+	echo ",time= ".$row["time"];
+	echo ",date= ".$row["date"];
+	
+	/* led on&off */
+	$getLight_d = $row2["default_light"];
+	$getLight_t = $row["light"];
+	if($getLight_t >= $getLight_d){
+		echo " LED_ON";
+	}else if($getLight_t <= $getLight_d){
+		echo " LED_OFF";
+	}else{
+		echo " ERROR";
+	}
 	
 }
    

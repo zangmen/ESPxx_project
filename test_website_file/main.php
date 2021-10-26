@@ -60,6 +60,22 @@ body{
 	font-size: 36px;
 	font-family: "標楷體";
 }
+
+table {
+    display: table;
+     -collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 0px;
+    border-color: 000;
+}/* CSS Document */
+
+iframe {
+    border-width: 0px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
 </style>
 </head>
 

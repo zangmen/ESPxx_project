@@ -57,6 +57,18 @@ if ($conn->connect_error) {
     echo ",default_hum=".$row2["default_hum"];
     echo ",fan_switch=". $row3["fan_switch"];
     echo ",time=".$row["time"];
+	echo ",date=".$row["date"];
+	
+	/* fan on&off */
+    $getTemp_n = $row["temp"];
+	$getTemp_d = $row2["default_temp"];
+	if($getTemp_n >= $getTemp_d){
+		echo " FAN_OPEN";
+	}else if($getTemp_n <= $getTemp_d){
+		echo " FAN_CLOSE";
+	}else{
+		echo " ERROR";
+	}
 
 }
 
