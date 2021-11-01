@@ -42,7 +42,7 @@ if ($conn->connect_error) {
 	$getLight_t = $row["light"];
 	if($getLight_t >= $getLight_d){
 		echo " LED_ON";
-	}else if($getLight_t <= $getLight_d){
+	}else if($getLight_t < $getLight_d){
 		echo " LED_OFF";
 	}else{
 		echo " ERROR";

@@ -32,19 +32,19 @@ if ($conn->connect_error) {
     $row3 = $result3->fetch_assoc();
 	
 	/* 回伝:tds,default_tds,time */
-	echo "motor_switch=". $row3["motor_switch"];
+	/*echo "motor_switch=". $row3["motor_switch"];
     echo ",default_tds=".$row2["default_tds"];
 	echo ",tds=".$row["tds"];
     echo ",time=".$row["time"]; 
-    echo ",date=".$row["date"];	
+    echo ",date=".$row["date"];*/	
 	
 	/* motor on&off */
 	$getTDS_d = $row2["default_tds"]; 
 	$getTDS_n = $row["tds"];
 	if($getTDS_n >= $getTDS_d){
-		echo " MOTOR_ON";
-	}else if($getTDS_n <= $getTDS_d){
-		echo " MOTOR_OFF";
+		echo "MOTORON!";
+	}else if($getTDS_n < $getTDS_d){
+		echo "MOTOROFF";
 	}else{
 		echo " 	ERROR";
 	}
