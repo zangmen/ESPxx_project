@@ -13,24 +13,21 @@
 #define HOST "192.168.21.39"          // 伺服器的IP或網址 (without "http:// "  and "/" at the end of URL)
 #define WIFI_SSID "Hydroponics"        // Wifi 名稱                                    
 #define WIFI_PASSWORD "AA10bb17"       // WIFI 密碼 
-#define URL "http://192.168.21.39/app/app_1.php"
+#define URL "http://192.168.21.39/upload_data/dbwrite_deviceConnent.php"
 
 /*全局變數*/
 int val,val2;
 String sendval, sendval2, postData;
+String sendval3;
 
 
 void setup() {
-
   Serial.begin(9600); //啟用串列埠 
   Serial.println("Communication Started \n\n");  
   delay(1000);
-  
   pinMode(LED_BUILTIN, OUTPUT);     // initialize built in led on the board
-   
-  get_wifi();  
+  get_wifi();
   delay(30);
-  
 }
 
 
@@ -38,14 +35,14 @@ void loop() {
 
 HTTPClient http;    // http object of clas HTTPClient
 
-int val = 20; //溫度(Temperature)
-int val2 = 30; //溼度(Humidity)
+int device_id = Serial.parseInt(); //輸入=int
+Serial.println(device_id);
 
 // Convert integer variables to string
-sendval = String(val);  
-sendval2 = String(val2);   
+sendval = String(device_id);  
+  
 /*使用POST來送出資料*/
-postData = "temp=" + sendval  + "&hum=" + sendval2;
+postData = "device_id=" + sendval ;
 
 // We can post values to PHP files as  example.com/dbwrite.php?name1=val1&name2=val2&name3=val3
 // Hence created variable postDAta and stored our variables in it in desired format
@@ -56,7 +53,7 @@ postData = "temp=" + sendval  + "&hum=" + sendval2;
    http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 
    int httpCode = http.POST(postData);   // Send POST request to php file and store server response code in variable named httpCode
-   Serial.println("Values are, temp = " + sendval + " and hum = "+ sendval2 );
+   Serial.println("Values are, devices_id = " + sendval);
 
    Serial.print("Send GET request to URL: ");
    Serial.println(URL);
